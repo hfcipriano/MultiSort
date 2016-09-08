@@ -1,0 +1,41 @@
+#include "quicksort.h"
+
+extern lista *newLista();
+extern node *newNode(int);
+extern void addNodeInicio(lista*, node*);
+extern void removeNodeInicio(lista*);
+
+void partition(lista *L, lista *A, lista *B, lista *C){
+	node *n;
+	int pivot;
+	if(L->raiz != NULL){
+        n = L->raiz;
+		pivot = n->valor;
+		while(n != NULL){
+			removeNodeInicio(L);
+			if(n->valor < pivot){
+				addNodeInicio(A, n);
+			}
+			if(n->valor == pivot){
+				addNodeInicio(B, n);
+			}
+			if(n->valor > pivot){
+				addNodeInicio(C, n);
+			}
+       		n = L->raiz;
+		}
+	}
+}
+	
+void quicksort(lista* L){
+	node *l = L->raiz;
+	lista *A = newLista(), *B = newLista(), *C = newLista();
+	if(l != NULL){
+		partition(L, A, B, C);
+        quicksort(A);
+        quicksort(C);
+        if(A->raiz != NULL)addNodeInicio(L, A->raiz);
+        if(B->raiz != NULL)addNodeInicio(L, B->raiz);
+        if(C->raiz != NULL)addNodeInicio(L, C->raiz);
+	}
+}

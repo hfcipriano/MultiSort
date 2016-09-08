@@ -1,0 +1,44 @@
+#include "selectionsort.h"
+
+
+lista *achaMenor(lista *l)
+{
+    node *i, *j;
+    int min, swapAux;
+    i = j = l->raiz->proximo;
+    min = l->raiz->valor;
+
+    while(i != NULL)
+    {
+        if(i->valor < min)
+        {
+            j = i;
+            min = i->valor;
+        }
+        i = i->proximo;
+    }
+
+    if(l->raiz->valor != min)
+    {
+        swapAux = l->raiz->valor;
+        l->raiz->valor = j->valor;
+        j->valor = swapAux;
+    }
+    return l;
+}
+
+
+void selectionSort(lista* l)
+{
+    node *aux;
+    aux = l->raiz->proximo;
+    if(aux->proximo != NULL)
+    {
+        while(aux->proximo != NULL)
+        {
+
+            achaMenor(l);
+            aux = aux->proximo;
+        }
+    }
+}

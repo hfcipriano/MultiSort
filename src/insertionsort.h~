@@ -1,0 +1,5 @@
+#include "../inc/bibliotecas.h"
+#include "../inc/structs.h"
+
+void insertion(lista*, node*);
+void insertionSort(lista*);

@@ -1,0 +1,14 @@
+Por: Breno Hombre, Henrique Cipriano, Hugo Capucho
+Disciplina/Professor: Estrutura de Dados I/Marcello Novaes
+
+O programa Multisort executa a tarefa de ordenar uma sequencia de números através de quatros métodos diferentes.
+
+Para utilizar, deve-se informar os dados como parametros do programa. Siga o exemplo a baixo:
+
+./Multisort <Metodos de ordenacao> <Tipo de Saida> <Arquivo> <Quantidade de números>
+
+Metodo de ordenacao: -q, -m, -i, -s
+-q : QuickSort, -m , MergeSort, -i : InsertionSort, -s : SelectionSort
+
+Tipo de Saida: -t, -b
+-t : Texto, -b : Binario (ideal para salvar em arquivo, adicionando no final do comando, >nomeArquivo)

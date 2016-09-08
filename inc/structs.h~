@@ -1,0 +1,18 @@
+typedef struct NODE{
+        int     valor;
+        struct  NODE *proximo;
+        struct  NODE *anterior;
+        void    (*printNode)();
+}node;
+typedef struct LISTA{
+        node    *raiz;
+        int     qtd;
+        void    (*printListaTexto)();
+        void    (*printListaBin)();
+        void    (*addNodeInicio)();
+        void    (*addNodeFinal)();
+	void 	(*rmNodeInicio)();
+        node*   (*rmNodeFinal)();
+	node*	(*swap)();
+}lista;
+

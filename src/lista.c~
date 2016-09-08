@@ -1,0 +1,97 @@
+#include "../inc/bibliotecas.h"
+#include "lista.h"
+
+void printListaTexto(lista *l){
+	node *n = l->raiz;
+	while(n != NULL){
+		printf("%d ", n->valor);
+		n = n->proximo;
+	}
+	printf("\n");
+}
+
+void printListaBin(lista *l){
+	node *n = l->raiz;
+	int i=0, *dados = (int*)malloc(l->qtd*sizeof(int));
+	for(i=0; i<l->qtd; i++){
+		dados[i] = n->valor;
+		n = n->proximo;
+	}
+	fwrite(dados,sizeof(int),l->qtd,stdout);
+}
+
+void addNodeInicio(lista *l,node *n){
+	node *r = l->raiz;
+	n->proximo = r;
+	l->raiz = n;
+	l->qtd++;
+	if(r!=NULL) r->anterior = n;
+}
+
+void addNodeFinal(lista *l,node *n){
+	node *r = l->raiz;
+	if(r == NULL){
+		l->raiz = n;
+	}else{
+		while(r->proximo != NULL){
+			r = r->proximo;
+		}
+		r->proximo = n;
+		n->anterior = r;
+	}
+	l->qtd++;
+}
+
+void rmNodeInicio(lista *l){
+    if(l->raiz != NULL){
+    node *n = l->raiz;
+    l->raiz = n->proximo;
+    n->anterior = NULL;
+    n->proximo = NULL;
+    l->qtd--;
+    }
+}
+
+node* rmNodeFinal(lista *l){
+	node *r = l->raiz, *a;
+	if(r == NULL){
+		return NULL;
+	}else{
+		while(r->proximo != NULL){
+			r = r->proximo;
+		}
+		a = r->anterior;
+		if(a != NULL){
+			r->anterior = NULL;
+			a->proximo = NULL;
+		}
+		l->qtd--;
+		return r;
+	}
+}
+
+node* swap(lista *l, node *a, node *b){
+//entrada: antes->a->b->depois
+//saida: antes->b->a->depois
+
+	node *antes, *depois;
+	antes = a->anterior;
+	depois = b->proximo;
+
+	if(antes != NULL){
+		antes->proximo = b;
+	}else{
+		l->raiz = b;
+	}
+	b->anterior = antes;
+
+	b->proximo = a;
+	a->anterior = b;
+
+	a->proximo = depois;
+	if(depois != NULL) depois->anterior = a; 
+
+	return b;
+}
+
+

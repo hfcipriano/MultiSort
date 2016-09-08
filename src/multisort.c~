@@ -1,0 +1,79 @@
+#include "../inc/bibliotecas.h"
+#include "../inc/structs.h"
+
+extern lista *newLista();
+extern node *newNode(int);
+extern void addNodeFinal(lista*,node*);
+extern void printListaTexto(lista*);
+extern void printListaBin(lista*, int);
+extern lista* quickSort(lista*);
+extern lista* mergeSort(lista*);
+extern lista* insertionSort(lista*);
+extern lista* selectionSort(lista*);
+extern lista* bubbleSort(lista*);
+
+int main(int argc, char **argv){
+
+		lista *l = newLista();
+		addNodeFinal(l, newNode(5));
+		addNodeFinal(l, newNode(1));
+		addNodeFinal(l, newNode(8));
+		addNodeFinal(l, newNode(3));
+		addNodeFinal(l, newNode(10));
+
+		printListaTexto(l);
+		printf("\n");
+
+		//printListaBin(l, 4);
+
+		quickSort(l);
+		printListaTexto(l);
+       /* if(argc<5){
+		printf("\nSintaxe:\nmultisort <Metodo de ordenacao> <Tipo de saida> <Arquivo> <quantidade de numeros>\n\n");
+		printf("Metodo de ordenacao: -q , -m, -i ou -s\n");
+		printf("q: quicksort, m: mergesort, i: insertionsort, m: mergesort\n\n");
+		printf("Tipo de saida: -t ou -b\n");
+		printf("t: texto, b: binario\n\n");
+                return -1;
+        }else{
+                int i,*v,n = atoi(argv[4]);
+                char *filename=argv[3], *metodo=argv[1], *saida=argv[2];
+                FILE *arq;
+		lista *l=newLista();
+
+		//Lendo inteiros do arquivo para um vetor e gerando uma lista
+                v=(int*)malloc(n*sizeof(int));
+                arq=fopen(filename,"rb+");
+                fread(v,sizeof(int),n,arq);
+                for(i=0; i<n; i++){
+			addNodeFinal(l, newNode(v[i]));
+                }
+                free(v);
+                fclose(arq);
+
+
+		printListaTexto(l);
+		quickSort(l);
+		switch(metodo[1]){
+			case 'q': quickSort(l);
+				  break;
+			case 'm': mergeSort(l);
+				  break;
+			case 'i': insertionSort(l);
+				  break;
+			case 's': selectionSort(l);
+				  break;
+			case 'b': bubbleSort(l);
+				  break;
+			default: printf("Metodo invalido\n");
+		}
+
+		if(saida[1] == 't'){
+			printListaTexto(l);
+		}else{
+			printListaBin(l,n);
+		}
+                return 0;
+        }*/
+}
+
